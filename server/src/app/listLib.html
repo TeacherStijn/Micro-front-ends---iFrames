@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>listLib</title>
+    <script>
+        window.onload = function() {
+            let data;
+            let selected;
+
+            fetch('https://bgg-json.azurewebsites.net/hot').then(
+                inp => inp.json()
+            ).then(
+                resp => {
+                    data = resp;
+                    render();
+                }
+            );
+
+            function render()
+            {
+                document.body.innerHTML = "<ul>";
+                data.forEach(
+                    el => {
+                        document.body.innerHTML += `<li>
+                                            <span>${el.rank})</span>
+                                            <span>${el.name}</span>
+                                       </li>`;
+                    }
+                );
+                document.body.innerHTML += "</ul>";
+
+                // add some event listeners
+                [...document.getElementsByTagName("li")].forEach(
+                    li => li.addEventListener('click', () => {
+                        // Many ways to do this next line:
+                        const selected = data.find(el => el.name == li.childNodes[3].textContent);
+
+                        // Mind the 'parent' postMessage! Not on current window!
+                        parent.postMessage(selected, 'http://localhost:1234');
+                    })
+                );
+            }
+        };
+    </script>
+</head>
+<body>
+    List
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cartLib</title>
+    <script>
+        window.onload = function() {
+            const gameTitle = document.getElementById('gameTitle');
+            const gameImage = document.getElementById('gameImage');
+
+            window.addEventListener('message', function (ev) {
+                if (ev.origin != 'http://localhost:1234') {
+                    // log error
+                    console.error('Origin issue!: ' + ev.origin);
+                } else {
+                    gameTitle.textContent = `Chosen game: ${ev.data.name}`;
+                    gameImage.setAttribute('src', ev.data.thumbnail);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="game">
+        Cart
+        <h2 id="gameTitle">Chosen game:</h2>
+        <img id="gameImage" src="" alt="Photo of game" />
+        <br/>
+        <button>Order</button>
+    </div>
+</body>
+</html>

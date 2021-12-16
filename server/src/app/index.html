@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boardgame wishlist app</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        iframe {
+            width: 40vw;
+            height: 60vh;
+        }
+    </style>
+    <script src="main.js" type="module"></script>
+</head>
+<body>
+    <!--
+        - Product team decides what features show where on the main page
+        - Team marketing takes care of retrieving and showing the hotness list from Boardgamegeek
+        - Client conversion team takes care of the wishlist/shoppingcart
+    -->
+
+    <iFrame src="listLib.html" id="listFrame" frameborder="none" ></iFrame>
+    <iFrame src="cartLib.html" id="cartFrame" frameborder="none" ></iFrame>
+</body>
+</html>
