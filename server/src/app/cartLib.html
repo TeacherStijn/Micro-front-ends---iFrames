@@ -13,6 +13,8 @@
                     // log error
                     console.error('Origin issue!: ' + ev.origin);
                 } else {
+                    // Should add a check of the data, that it's not coming from
+                    // (f.e.) a browser extension
                     gameTitle.textContent = `Chosen game: ${ev.data.name}`;
                     gameImage.setAttribute('src', ev.data.thumbnail);
                 }
